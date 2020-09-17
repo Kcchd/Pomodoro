@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class App extends React.Component  {
-    constructor() {
+    constructor(props) {
+        super(props);
         this.loop = undefined;
     }
     state = {
@@ -10,14 +11,31 @@ class App extends React.Component  {
         sessionCount: 25,
         clockCount: 25 * 60,
         currentTimer: 'Session',
+        isPlaying: false, 
         loop: undefined
     }
 
-handlePlayPause = ()=> {
-    this.loop = setInterval(() => {}, 1000);
-   
+    handlePlayPause = ()=> {
+        const { isPlaying } = this.state;
+
+        if(isPlaying) {
+            clearInterval(this.loop);
+
+            this.setState({
+                isPlaying: false
+            });
+        } else {
+            this.setState({
+                isPlaying: true
+            })
+
+            this.loop = setInterval(() => {}, 1000);
+    }
 }
 
+    componentWillUnmount() {
+        clearInterval(this.loop);
+    }
     convertToTime = (count) => {
         const minutes = Math.floor(count / 60);
         let seconds = count % 60;
@@ -68,7 +86,7 @@ handlePlayPause = ()=> {
         )
     }
 }
-const SetTimer = (props) => (
+let SetTimer = (props) => (
     <div className="timer-container">
         <h1>{props.title}</h1>
         <div>

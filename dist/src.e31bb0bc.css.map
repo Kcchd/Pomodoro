@@ -1,1 +1,0 @@
-{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"src.e31bb0bc.css","sourceRoot":"../src","sourcesContent":["*{\n    box-sizing: border-box;\n}\nbody {\n    background-color: #003272;\n    color: white;\n}\n.flex {\n    \n}"]}
